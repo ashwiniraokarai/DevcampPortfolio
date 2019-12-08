@@ -28,7 +28,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
-    #AshL Simply brings up the edit from and connects to update action on submit
+    #Ash: Simply brings up the edit from and connects to update action on submit
     #Of course, it runs the set_blog first, to get hold of the specific blog in question so that form can grab it
   end
 
@@ -36,7 +36,7 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   #Ash: create action actually creates the blog when the new form is submitted
   def create
-    #Ash: Instantiate a new Blog Model Object with the new.html.erb from data submitted
+    #Ash: Instantiate a new Blog Model Object with the new.html.erb form data submitted
     @blog = Blog.new(blog_params)
 
     respond_to do |format|

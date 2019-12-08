@@ -4,5 +4,5 @@
   <p><%= eachPortfolio.title %></p>
   <p><%= eachPortfolio.subtitle %></p>
   <p><%= eachPortfolio.body %></p>
-  <p><%= image_tag eachPortfolio.thumb_image %></p>  <!-- image_tag is a helper method in ActionView that substitutes <img src= >-->
+  <p><%= image_tag eachPortfolio.thumb_image if !eachPortfolio.thumb_image.nil? %></p>  <!-- image_tag is a helper method in ActionView that substitutes <img src= >-->
 <% end %>
