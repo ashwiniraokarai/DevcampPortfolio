@@ -22,7 +22,22 @@ class PortfoliosController < ApplicationController
     else
       render new
     end
+  end
+
+  def edit
+    @portfolio = Portfolio.find(params[:id])
+  end
+
+  def update
+    @portfolio = Portfolio.find(params[:id])
+    if @portfolio.update(params.require(:portfolio).permit(:title, :subtitle, :body))
+      redirect_to(portfolios_path, notice: "Your portfolio has been updated") #index
+    else
+      render edit
+    end
 
   end
+
+
 
 end
