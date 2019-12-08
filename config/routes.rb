@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :portfolios
   #home about contact were set up as part of Pages controller (rails g controller Pages home about contact)
   get 'pages/home'
   get 'pages/about'
