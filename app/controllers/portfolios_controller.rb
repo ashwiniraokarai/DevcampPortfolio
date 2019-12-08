@@ -41,4 +41,10 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.find(params[:id])
   end
 
+  def destroy
+    @portfolio = Portfolio.find(params[:id])
+    @portfolio.destroy
+    redirect_to(portfolios_path, notice: "Your portfolio has been removed")
+  end
+
 end

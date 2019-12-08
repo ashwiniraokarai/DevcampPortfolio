@@ -18,7 +18,10 @@
 
   <!--Add a string "Edit" hyperlinking to edit page -->
     <%= link_to "Edit", edit_portfolio_path(eachPortfolio.id) %>&nbsp
-      <!-- Equivalent to <a href="portfolios/<%= eachPortfolio.id%>/edit">EDIT 2</a> -->
+      <!-- Equivalent to <a href="portfolios/<%= eachPortfolio.id%>/edit">Edit</a> -->
+  <!--Add a string "Destroy" and hyperlink to the destroy page i.e, portfolio_path(eachPortfolio.id). Notice the method: :delete to differentiate from other identical paths on routes-->
+    <%= link_to "Destroy", portfolio_path(eachPortfolio.id), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp
+        <!-- Equivalent to <a href="portfolios/<%= eachPortfolio.id%>>Destroy</a> -->
   </p>
   <!-- Display subtitle and body. Display image if available -->
   <p><%= eachPortfolio.subtitle %></p>
