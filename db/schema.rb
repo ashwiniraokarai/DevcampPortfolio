@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_030655) do
+ActiveRecord::Schema.define(version: 2019_12_09_043728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 2019_12_09_030655) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"
+    t.string "slug"   #Ash:This column is a result of rails g migration AddSlugToUsers slug:uniq followed by db:migrate
+    t.integer "status", default: 0
+    #Ash:This column is a result of rails g migration add_post_status_to_blogs status:integer followed by db:migrate
+    #status also has an enum defined on it in the model class (blog.rb)
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
   end
 
