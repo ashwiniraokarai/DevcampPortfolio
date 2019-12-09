@@ -13,7 +13,7 @@
 <% @portfolios.each do |eachPortfolio| %>
 
   <!-- Display the title and hyperlink it to the show page -->
-  <p><%= link_to eachPortfolio.title, portfolio_path(eachPortfolio.id) %>&nbsp
+  <p><%= link_to eachPortfolio.title, portfolio_show_path(eachPortfolio.id) %>&nbsp
     <!-- Same as <%= link_to "Show", portfolio_path(eachPortfolio.id) %></p>  but utilizing the title to hyperlink, in place of the string "show"-->
 
   <!--Add a string "Edit" hyperlinking to edit page -->
