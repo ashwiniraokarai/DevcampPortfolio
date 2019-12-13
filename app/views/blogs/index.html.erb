@@ -7,7 +7,7 @@
     <tr>
       <th>Title</th>
       <th>Body</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -16,10 +16,13 @@
       <tr>
         <td><%= blog.title %></td>
         <td><%= blog.body %></td>
+        <!-- Ash: Adding a line to display the newly added status as an html column. status is an enum defined in blog.rb model). blog.status is being
+          hyperlinked to the custom route mapping to toggle_status_blog_path -->
+        <td><%= link_to blog.status, toggle_status_blog_path(blog.id) %></td>
         <td><%= link_to 'Show', blog %></td>
         <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
         <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <!-- method here refers to the http VERB -->
+        <!-- method here refers to the http VERB on thr routing tables -->
       </tr>
     <% end %>
   </tbody>

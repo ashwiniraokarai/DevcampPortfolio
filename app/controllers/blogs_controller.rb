@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /blogs
   # GET /blogs.json
@@ -28,7 +28,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
-    #AshL Simply brings up the edit from and connects to update action on submit
+    #Ash: Simply brings up the edit from and connects to update action on submit
     #Of course, it runs the set_blog first, to get hold of the specific blog in question so that form can grab it
   end
 
@@ -36,7 +36,7 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   #Ash: create action actually creates the blog when the new form is submitted
   def create
-    #Ash: Instantiate a new Blog Model Object with the new.html.erb from data submitted
+    #Ash: Instantiate a new Blog Model Object with the new.html.erb form data submitted
     @blog = Blog.new(blog_params)
 
     respond_to do |format|
@@ -76,10 +76,22 @@ class BlogsController < ApplicationController
     end
   end
 
+  #Ash: Defining action to support custom route: toggle_status_blog POST   /blogs/:id/toggle_status(.:format)                                                       blogs#toggle_status
+  def toggle_status
+    #has access to @blog (instance var) through set_blog method configured to run via before_action
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+    redirect_to blogs_url #this is just a test. needs to do something more meaningful
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      #Originally was @blog = Blog.find(params[:id])
+      @blog = Blog.friendly.find(params[:id])   #.friendly is for mapping the slug for friendly ids on the urls. See https://github.com/norman/friendly_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

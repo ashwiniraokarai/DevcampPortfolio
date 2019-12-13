@@ -1,0 +1,31 @@
+<h2>Index page living in views portfolios </h2>
+
+
+<!-- At the beginning of the page, link to creating a new portfolio. Below is equivalent to: <a href="portfolios/new">Create a new portfolio</a>.  -->
+<%=link_to "Create a new portfolio", new_portfolio_path %>
+<!-- if you want to specify a subdomain, use new_portfolio_url instead. It translates to the FULL path: https://localhost:3000/portfolios/new -->
+<%#=link_to "Create a new portfolio", new_portfolio_url, subdomain: 'my_subdomain' %>
+
+<!-- horizontal line -->
+<hr>
+
+<!-- Goal: Display each attribute of each portfolio -->
+<% @portfolios.each do |eachPortfolio| %>
+
+  <!-- Display the title and hyperlink it to the show page -->
+  <p><%= link_to eachPortfolio.title, portfolio_show_path(eachPortfolio.id) %>&nbsp
+    <!-- Same as <%= link_to "Show", portfolio_path(eachPortfolio.id) %></p>  but utilizing the title to hyperlink, in place of the string "show"-->
+
+  <!--Add a string "Edit" hyperlinking to edit page -->
+    <%= link_to "Edit", edit_portfolio_path(eachPortfolio.id) %>&nbsp
+      <!-- Equivalent to <a href="portfolios/<%= eachPortfolio.id%>/edit">Edit</a> -->
+  <!--Add a string "Destroy" and hyperlink to the destroy page i.e, portfolio_path(eachPortfolio.id). Notice the method: :delete to differentiate from other identical paths on routes-->
+    <%= link_to "Destroy", portfolio_path(eachPortfolio.id), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp
+        <!-- Equivalent to <a href="portfolios/<%= eachPortfolio.id%>>Destroy</a> -->
+  </p>
+  <!-- Display subtitle and body. Display image if available -->
+  <p><%= eachPortfolio.subtitle %></p>
+  <p><%= eachPortfolio.body %></p>
+  <p><%= image_tag eachPortfolio.thumb_image if !eachPortfolio.thumb_image.nil? %></p>  <!-- image_tag is a helper method in ActionView that substitutes <img src= >. If NOT nil, show the image>-->
+  <hr>
+<% end %>

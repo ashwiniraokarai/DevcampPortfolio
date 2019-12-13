@@ -1,17 +1,16 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<p>Posts:<br>
-  <% @posts.each do |eachPost| %>
-    <%= eachPost.title %>
+<h2>Posts:</h2>
+  <% @posts.each do |eachPost| %><br>
+    <%= eachPost.title %><br>
     <%= eachPost.body %><br>
   <% end %>
-</p>
 
 
-<p>Skills: <br>
+
+<h2>Skills:</h2>
   <% @skills.each do |eachSkill| %>
     <%= eachSkill.title %>
-    <%= eachSkill.percent_utilized %>
+    <%= eachSkill.percent_utilized %><br>
   <% end %>
-</p>
