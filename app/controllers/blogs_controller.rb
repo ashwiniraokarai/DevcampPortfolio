@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /blogs
   # GET /blogs.json
@@ -76,10 +76,21 @@ class BlogsController < ApplicationController
     end
   end
 
+  #Ash: Defining action to support custom route: toggle_status_blog POST   /blogs/:id/toggle_status(.:format)                                                       blogs#toggle_status
+  def toggle_status
+    #has access to @blog (instance var) through set_blog method configured to run via before_action
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+    redirect_to blogs_url #this is just a test. needs to do something more meaningful
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      #Originally was @blog = Blog.find(params[:id]) 
+      #Originally was @blog = Blog.find(params[:id])
       @blog = Blog.friendly.find(params[:id])   #.friendly is for mapping the slug for friendly ids on the urls. See https://github.com/norman/friendly_id
     end
 

@@ -12,8 +12,14 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   #Ash: resources encapsulates all the necessary RESTful routes for Blogs scaffold)
-  resources :blogs
+  resources :blogs do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # Ash: Via the following LOC within the blog family, define the route: toggle_status_blog GET /blogs/:id/toggle_status(.:format)  blogs#toggle_status
+  # The resulting path toggle_status_blog_path is then linked to blog.status in index.html
+   member do
+     get :toggle_status
+   end
+ end
 
   #Ash:Setting up the root (/) to hit pages/home page such that it overrides the default "yay, you're on rails" page
   root to: "pages#home"
