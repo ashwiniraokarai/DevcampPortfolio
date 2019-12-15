@@ -14,7 +14,7 @@
   <tbody>
     <% @blogs.each do |blog| %>
       <tr>
-        <td><%= blog.title %></td>
+        <td><%= blog.title.upcase %></td>
         <td><%= blog.body %></td>
         <!-- Ash: Adding a line to display the newly added status as an html column. status is an enum defined in blog.rb model). blog.status is being
           hyperlinked to the custom route mapping to toggle_status_blog_path -->
