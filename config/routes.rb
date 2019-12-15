@@ -1,4 +1,4 @@
-ogRails.application.routes.draw do
+Rails.application.routes.draw do
   #Ash:standard resources were set up via rails g resource Portfolio title:string subtitle:string body:text image:text thumb_image:text
   #The exceptions were included by me singularize paths that look up single records but by default have plural such as portfolios/:id pointing to portfolios#show
   #The customization is just for practice. It is by no means a must.
