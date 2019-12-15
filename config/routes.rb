@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   #The customization is just for practice. It is by no means a must.
   resources :portfolios, except: [:show]
   get 'portfolio/:id', to: 'portfolios#show', as:'portfolio_show'
-  #now show route is singularized to portfolio/:id instead of the default portfolios/:id. It is also being given its own path helper portfolio_show. link_to show in index form needed to be updated accordingly.
+  #now show route is singularized to portfolio/:id instead of the default portfolios/:id. It is also being given its own path helper portfolio_show.
+  #link_to show in index form needed to be updated accordingly. 
 
   #routes leading to custom actions and views
   get 'angular-portfolios', to: 'portfolios#angular'

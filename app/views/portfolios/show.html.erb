@@ -1,6 +1,6 @@
 <h1>See portfolio</h1>
 
-<p><%= image_tag @portfolio.image if !@portfolio.image.nil? %></p>
+<p><%= image_tag @portfolio.image if !@portfolio.image.nil? %></p>    <!-- Show image if available (not nil) -->
 <h2><%= @portfolio.title %></h2>
 <em><%= @portfolio.subtitle %></em>
 <p><%= @portfolio.body %></p>

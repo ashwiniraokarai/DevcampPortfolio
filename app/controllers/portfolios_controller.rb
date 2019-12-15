@@ -30,7 +30,8 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body))
 
     if @portfolio.save
-      redirect_to(portfolios_path, notice: "Your portfolio has been added")  #index
+      redirect_to(portfolios_path, notice: "Your portfolio has been added!")  #index
+      #if you wanted to redirect to the custom routed show page instead, you'd do: portfolio_show_path(@portfolio)
     else
       render new
     end
@@ -43,7 +44,7 @@ class PortfoliosController < ApplicationController
   def update
     @portfolio = Portfolio.find(params[:id])
     if @portfolio.update(params.require(:portfolio).permit(:title, :subtitle, :body))
-      redirect_to(portfolios_path, notice: "Your portfolio has been updated") #index
+      redirect_to(portfolio_show_path, notice: "Your portfolio has been updated") #index
     else
       render edit
     end
