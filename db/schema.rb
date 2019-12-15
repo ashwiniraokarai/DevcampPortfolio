@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_043728) do
+ActiveRecord::Schema.define(version: 2019_12_15_073931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,13 @@ ActiveRecord::Schema.define(version: 2019_12_09_043728) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"   #Ash:This column is a result of rails g migration AddSlugToUsers slug:uniq followed by db:migrate
+    t.string "slug"
     t.integer "status", default: 0
-    #Ash:This column is a result of rails g migration add_post_status_to_blogs status:integer followed by db:migrate
-    #status also has an enum defined on it in the model class (blog.rb)
+    #topic_id is a result of rails g migration add_topic_reference_to_blogs topic:references
+    #followed by rails db:migrate
+    t.bigint "topic_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["topic_id"], name: "index_blogs_on_topic_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -55,4 +57,11 @@ ActiveRecord::Schema.define(version: 2019_12_09_043728) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "blogs", "topics"
 end
