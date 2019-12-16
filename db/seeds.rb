@@ -68,3 +68,18 @@ end
 
 
 puts "9 portfolios created"
+
+
+3.times do |m|
+  #Technology.create!(
+    #name: "Technology #{m}",
+    #portfolio_id: Portfolio.last.id
+  #)
+
+  #Alternate syntax taking advantage of the parent(portfolio)-child(technologies) relastionship
+  Portfolio.last.technologies.create!(
+    name: "Technology #{m}"  #automatically associated the portfolio_id (foreign key) to the technology record
+  )
+end
+
+puts "3 technologies created"

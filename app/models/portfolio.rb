@@ -1,4 +1,8 @@
 class Portfolio < ApplicationRecord
+  has_many :technologies #manually added. rails added the other side of association (belongs_to) on the Technology model
+
+  include Placeholder #module in which image_generator method lives
+
   validates_presence_of :title, :subtitle, :body
 
   #this is a scope (custom query) method created here for ease and is actually utilized in the controller
