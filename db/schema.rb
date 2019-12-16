@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_073931) do
+ActiveRecord::Schema.define(version: 2019_12_16_004452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 2019_12_15_073931) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "status", default: 0
-    #topic_id is a result of rails g migration add_topic_reference_to_blogs topic:references
-    #followed by rails db:migrate
     t.bigint "topic_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
     t.index ["topic_id"], name: "index_blogs_on_topic_id"
@@ -55,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_073931) do
     t.integer "percent_utilized"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "badge"
   end
 
   create_table "topics", force: :cascade do |t|

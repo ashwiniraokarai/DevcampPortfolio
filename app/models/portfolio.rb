@@ -7,7 +7,7 @@ class Portfolio < ApplicationRecord
     where(subtitle: 'Ruby on Rails')
   end
 
-  #this is another way of writing a scope
+  #this is another way of writing a scope using a lambda expression
   scope :angular, -> { where(subtitle: 'Angular') }
 
   #set default values for image field (if there is NO preexisting image ONLY) AFTER new (entering details into the form)
@@ -19,7 +19,10 @@ class Portfolio < ApplicationRecord
       #self.image = "https://place-hold.it/600*400"
     #end
 
-    #"||=" operator is the shortcut for "if"
-      self.image ||= "https://place-hold.it/600*400"
+      #"||=" operator is the shortcut for "if"
+      #self.image ||= "https://place-hold.it/600*400"
+      self.image ||= Placeholder.image_generator(height: 600, width: 400)
+      #see concerns > placeholder.rb where custom helper method image_generator lives
+      #image_generator simply takes the dimensions and calls https://place-hold.it/ with those dimensions
   end
 end
