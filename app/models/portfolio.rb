@@ -1,6 +1,13 @@
 class Portfolio < ApplicationRecord
   has_many :technologies #manually added. rails added the other side of association (belongs_to) on the Technology model
 
+  #nested attributes allow you to save attributes on associated records (i.e, technologies) through the parent (portfolio)
+  #this allows you to create the portfolio and associated technologies records in one go
+  #https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html
+  accepts_nested_attributes_for :technologies,
+                                reject_if: lambda { |blockVariable| blockVariable['name'].blank? }
+  #To test in the console: Portfolio.create(title: "Web app", subtitle: "sdfsgfdsgdfsg", body: "hjuyrtyrer", technologies_attributes: [{name:"Rails"}, {name:"Spring"}, {name:"Django"}, {name:"Angular"}]
+
   include Placeholder #module in which image_generator method lives
 
   validates_presence_of :title, :subtitle, :body

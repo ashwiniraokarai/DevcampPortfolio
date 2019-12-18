@@ -8,7 +8,7 @@ class PortfoliosController < ApplicationController
     #@portfolios = Portfolio.where(subtitle: "Ruby on Rails") #returns a filetered collection of portfolios with a specific subtitle
 
     #The custom query above was moved to the Model as a custom scope named rails and is being called here
-    #Cntroller should only be responsible for data flow just like a traffic controller and not worry about logic
+    #Controller should only be responsible for data flow just like a traffic controller and not worry about logic
     @rails_portfolios = Portfolio.ruby_on_rails
   end
 

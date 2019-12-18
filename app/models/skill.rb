@@ -2,6 +2,7 @@
 #Note: Skill is just a model. It does not have its own controller. It is however instantiated and leveraged in Pages controller and Pages views
 class Skill < ApplicationRecord
   include Placeholder #module in which image_generator method lives
+
   validates_presence_of :title, :percent_utilized
 
   #set default value for the newly added badge attribute/ add_column
