@@ -1,10 +1,8 @@
-<h2>Index page living in views portfolios </h2>
-
-<h3><%= notice %></h3>
+<h2>rails page living in views portfolios </h2>
 
 
 <!-- At the beginning of the page, link to creating a new portfolio. Below is equivalent to: <a href="portfolios/new">Create a new portfolio</a>.  -->
-<p><%=link_to "Create a new portfolio", new_portfolio_path %></p>
+<%=link_to "Create a new portfolio", new_portfolio_path %>
 <!-- if you want to specify a subdomain, use new_portfolio_url instead. It translates to the FULL path: https://localhost:3000/portfolios/new -->
 <%#=link_to "Create a new portfolio", new_portfolio_url, subdomain: 'my_subdomain' %>
 
@@ -12,7 +10,7 @@
 <hr>
 
 <!-- Goal: Display each attribute of each portfolio -->
-<% @portfolios.each do |eachPortfolio| %>
+<% @rails_portfolios.each do |eachPortfolio| %>
 
   <!-- Display the title and hyperlink it to the show page -->
   <p><%= link_to eachPortfolio.title, portfolio_show_path(eachPortfolio.id) %>&nbsp

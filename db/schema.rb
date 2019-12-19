@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead
+Top# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_043728) do
+ActiveRecord::Schema.define(version: 2019_12_16_035604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 2019_12_09_043728) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"   #Ash:This column is a result of rails g migration AddSlugToUsers slug:uniq followed by db:migrate
+    t.string "slug"
     t.integer "status", default: 0
-    #Ash:This column is a result of rails g migration add_post_status_to_blogs status:integer followed by db:migrate
-    #status also has an enum defined on it in the model class (blog.rb)
+    t.bigint "topic_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["topic_id"], name: "index_blogs_on_topic_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -53,6 +53,26 @@ ActiveRecord::Schema.define(version: 2019_12_09_043728) do
     t.integer "percent_utilized"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "badge"
   end
 
+  #result of rails g model Technology name:string portfolio:references, following a
+  #rails db:migrate
+  #portfolio_id is the foreign key
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.bigint "portfolio_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["portfolio_id"], name: "index_technologies_on_portfolio_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "blogs", "topics"
+  add_foreign_key "technologies", "portfolios"
 end
