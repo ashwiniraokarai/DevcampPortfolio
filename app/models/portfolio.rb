@@ -3,6 +3,7 @@ class Portfolio < ApplicationRecord
 
   #nested attributes allow you to save attributes on associated records (i.e, technologies) through the parent (portfolio)
   #this allows you to create the portfolio and associated technologies records in one go
+  #this helps wire up :technologies to html forms of portfolio
   #https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html
   accepts_nested_attributes_for :technologies,
                                 reject_if: lambda { |blockVariable| blockVariable['name'].blank? }

@@ -23,11 +23,15 @@ class PortfoliosController < ApplicationController
     #gives the ability to have the form to create a new Portfolio
     #new needs to connect the form (via submit) to create action
     #NOTE: this DOES NOT have the ability to grab any form information
+
+    #We are trying to create 3 technologies per portfolio
+    3.times { @portfolio.technologies.build }
   end
 
   def create
     #Grab form data submitted by user and save to database
-    @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body))
+    @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body,
+      technologies_attributes: [:name]))   #wire this up to accept technologies attributes as well
 
     if @portfolio.save
       redirect_to(portfolios_path, notice: "Your portfolio has been added!")  #index
