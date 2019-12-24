@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  #ASH: route added as a result of rails generate devise User (devise is an authentication gem)
+  #devise_for is a method, it encapsulates routes of registration, login, logout and what not
+  devise_for :users
+
+
   #Ash:standard resources were set up via rails g resource Portfolio title:string subtitle:string body:text image:text thumb_image:text
   #The exceptions were included by me to singularize paths that look up single records but by default have plural such as portfolios/:id pointing to portfolios#show
   #The customization is just for practice. It is by no means a must.
   resources :portfolios, except: [:show]
   get 'portfolio/:id', to: 'portfolios#show', as:'portfolio_show'
   #now show route is singularized to portfolio/:id instead of the default portfolios/:id. It is also being given its own path helper portfolio_show.
-  #link_to show in index form needed to be updated accordingly. 
+  #link_to show in index form needed to be updated accordingly.
 
   #routes leading to custom actions and views
   get 'angular-portfolios', to: 'portfolios#angular'
