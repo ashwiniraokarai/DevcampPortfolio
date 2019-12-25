@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   #ASH: route added as a result of rails generate devise User (devise is an authentication gem)
   #devise_for is a method, it encapsulates routes of registration, login, logout and what not
-  devise_for :users
+  #the "path" and "path_names" options were added by memoverride the devise-shipped routes with better sounding routes
+  devise_for :users, path: '', path_names: { sign_in: "login", sign_out: "logout", sign_up: "register" }
 
 
   #Ash:standard resources were set up via rails g resource Portfolio title:string subtitle:string body:text image:text thumb_image:text
@@ -25,11 +26,13 @@ Rails.application.routes.draw do
   #Ash: resources encapsulates all the necessary RESTful routes for Blogs scaffold)
   resources :blogs do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # Ash: Via the following LOC within the blog family, define the route: toggle_status_blog GET /blogs/:id/toggle_status(.:format)  blogs#toggle_status
-  # The resulting path toggle_status_blog_path is then linked to blog.status in index.html
-   member do
-     get :toggle_status
-   end
+
+  # Ash: Via the following LOC within the blog family (resources), define the route: toggle_status_blog GET /blogs/:id/toggle_status(.:format)  blogs#toggle_status
+  # The resulting path toggle_status_blog_path is then explicitly linked to blog.status in index.html
+  # This is a call to the member method to which you are passing a block
+     member do
+       get :toggle_status
+     end
  end
 
   #Ash:Setting up the root (/) to hit pages/home page such that it overrides the default "yay, you're on rails" page
