@@ -10,9 +10,20 @@
   </head>
 
   <body>
-    <!-- Adding the notice and alert for flash messages, based on instructions of rails generate devise:install (an authentication gem)-->
+    <!-- ASH: Adding the notice and alert for flash messages, based on instructions of rails generate devise:install (an authentication gem)-->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <!-- ASH: Adding a link to logout to show across all pages -->
+    <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they ahve logged out -->
+    <% if current_user %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <!-- ELSE show them links to sign-in or register -->
+    <% else %>
+     <%= link_to "Register", new_user_registration_path %><br>
+     <%= link_to "Login", new_user_session_path %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
