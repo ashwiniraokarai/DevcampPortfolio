@@ -1,4 +1,8 @@
-<h1>Pages#home</h1>
+<h1>Hi, <%= current_user.first_name if current_user %></h1>
+<!-- Display only if at least 1 user exists in the DB. current_user is Devise provided access to the current user instance. first_name is a method in the User model (virtual attribute) -->
+
+
+
 <p>Find me in app/views/pages/home.html.erb</p>
 
 <h2>Posts:</h2>
