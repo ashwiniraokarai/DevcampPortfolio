@@ -46,3 +46,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Ash added from https://github.com/norman/friendly_id
 gem 'friendly_id', '~> 5.2.4'
+#Ash added from https://rubygems.org/gems/devise
+gem 'devise', '~> 4.7', '>= 4.7.1'
