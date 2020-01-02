@@ -10,3 +10,23 @@
 <% @portfolio.technologies.each do |tech| %>
 <p><%= tech.name %></p>
 <% end %>
+
+<hr>
+<!-- Display parameters sent from the routing engine. "params" is a method that
+returns an ActionController::Parameters object that behaves a lot like a hash -->
+<%= params.inspect %>
+<!--O/P <ActionController :: {Parameters "controller" => "portfolio", "action" => "show", "id" => "4"} permitted false> -->
+
+<hr>
+<!-- Access individual values in the hash sent from the routing engine -->
+controller: <%= params[:controller] %><br>
+action: <%= params[:action] %><br>
+id: <%= params[:id] %>
+
+<hr>
+<!-- Now you CAN also do this, just like you would in the controller but that would make bloat up the VIEW and make it completely unmanageable -->
+<%= Portfolio.find(params[:id]).title %>
+<%= Portfolio.find(params[:id]).technologies %>
+
+<hr>
+<%= session.inspect %>

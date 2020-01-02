@@ -24,6 +24,11 @@
      <%= link_to "Login", new_user_session_path %>
     <% end %>
 
+    <!-- session[:source] is defined in application_controller.rb -->
+    <% if session[:source] %>
+      <p>Thanks for visiting me from <%= session[:source] %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
