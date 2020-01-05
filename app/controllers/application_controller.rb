@@ -19,15 +19,17 @@ class ApplicationController < ActionController::Base
 
   include DeviseWhitelist
 
-  #to be refactored into a controller concern
+  #During refactor, code was moved to module SetSource inside /controllers/concerns/set_source.rb
   #track a query string parameter called "q" in a session so you can persist that specific data between requests (pages)
   #E.g.: http://localhost:3000/portfolio/4?q="twitter" followed by /blogs (no need for entering q again since session info is passed b/w pages)
-  before_action :set_source
+  ##before_action :set_source
 
-  def set_source
+  ##def set_source
     #Rails gives you access to the session hash. Both :source and :q are custom (developer defined), so you can all them anything you like.
-    session[:source] = params[:q] if params[:q]
-    #session[:source] is then leveraged in view layouts/application.html.erb
-  end
+    ##session[:source] = params[:q] if params[:q]
+    #session[:source] is then leveraged in views/layouts/application.html.erb
+  ##end
 
+  include SetSource
+  
 end

@@ -26,7 +26,7 @@
 
     <!-- session[:source] is defined in application_controller.rb -->
     <% if session[:source] %>
-      <p>Thanks for visiting me from <%= session[:source] %></p>
+      <p>Session tracker says: Thanks for visiting me from <%= session[:source] %></p>
     <% end %>
 
     <%= yield %>

@@ -1,4 +1,4 @@
-#ASH: this module is accessed (called by) /controllers/application_controller.rb via the "include" keywords
+#ASH: this module is accessed (called by) /controllers/application_controller.rb via the "include" keyword
 
 module DeviseWhitelist
   #tells rails that we are creating a concern
