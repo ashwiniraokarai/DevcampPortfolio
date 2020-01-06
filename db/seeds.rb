@@ -12,7 +12,7 @@
 
 
 #Moving Topic seed to top even though it was added much later.
-#This is because Blog topic_id foreign key generation are dependant on Topic's existence
+#This is because Blog topic_id foreign key generation are dependent on Topic's existence
 3.times do |l|
   Topic.create!(
     title: "Topic #{l}"

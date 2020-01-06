@@ -9,7 +9,8 @@ class Blog < ApplicationRecord
   validates_presence_of :title, :body   #prevents empty record from being saved (thro create or edit) both via the UI and via the console (Blog.create!())
 
   #associations
-  belongs_to :topic
+  belongs_to :topic, optional: true  #allows you to create a blog via "new.html" form without needing a topic. In other words, prevents the error "Topic must exist"
+
 
   #To add the topic_id foreign key to blogs table run:
   #rails g migration add_topic_reference_to_blogs topic:references
