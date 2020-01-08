@@ -19,9 +19,11 @@ class ApplicationController < ActionController::Base
 
   include DeviseWhitelist
 
+  #============================================
   #During refactor, code was moved to module SetSource inside /controllers/concerns/set_source.rb
   #track a query string parameter called "q" in a session so you can persist that specific data between requests (pages)
   #E.g.: http://localhost:3000/portfolio/4?q="twitter" followed by /blogs (no need for entering q again since session info is passed b/w pages)
+
   ##before_action :set_source
 
   ##def set_source
@@ -31,5 +33,20 @@ class ApplicationController < ActionController::Base
   ##end
 
   include SetSource
-  
+
+  #============================================
+  #During refactor, code was moved to module CurrentUser inside /controllers/concerns/set_source.rb
+
+  ##before_action :current_user
+
+  #Override the current_user method of Devise
+  ##def current_user
+    #super simply calls the current_user method Devise (parent) which results in an instance of User model
+    #call current_user of parent IF current_user of parent exists (if user logged in is true)
+    #else mimic a user via OpenStruct as though they are coming from the database
+    ##super || OpenStruct.new(name:"Guest User", first_name: "Guest", last_name: "User", email: "guest@example.com")
+  ##end
+
+  include CurrentUser
+
 end

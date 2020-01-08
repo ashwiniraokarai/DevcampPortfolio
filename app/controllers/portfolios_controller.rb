@@ -30,8 +30,7 @@ class PortfoliosController < ApplicationController
 
   def create
     #Grab form data submitted by user and save to database
-    @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body,
-      technologies_attributes: [:name]))   #wire this up to accept technologies attributes as well
+    @portfolio = Portfolio.new(portfolio_permitted_params)
 
     if @portfolio.save
       redirect_to(portfolios_path, notice: "Your portfolio has been added!")  #index
@@ -47,7 +46,7 @@ class PortfoliosController < ApplicationController
 
   def update
     @portfolio = Portfolio.find(params[:id])
-    if @portfolio.update(params.require(:portfolio).permit(:title, :subtitle, :body))
+    if @portfolio.update(portfolio_permitted_params)
       redirect_to(portfolio_show_path, notice: "Your portfolio has been updated") #index
     else
       render edit
@@ -62,6 +61,17 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.find(params[:id])
     @portfolio.destroy
     redirect_to(portfolios_path, notice: "Your portfolio has been removed")
+  end
+
+  #ASH: Refactor- tossing permitted params into its own method so action create and update can leverage this
+  private
+
+  def portfolio_permitted_params
+    params.require(:portfolio).permit(:title,
+                                      :subtitle,
+                                      :body,
+                                      technologies_attributes: [:name])
+                                      #wired up to accept technologies attributes as well
   end
 
 end

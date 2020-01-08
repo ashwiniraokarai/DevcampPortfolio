@@ -24,7 +24,7 @@ action: <%= params[:action] %><br>
 id: <%= params[:id] %>
 
 <hr>
-<!-- Now you CAN also do this, just like you would in the controller but that would make bloat up the VIEW and make it completely unmanageable -->
+<!-- Now you CAN also do this, just like you would in the controller instead of utilizing @portfolio but not only is it unnecessary but also would bloat up the VIEW and make it completely unmanageable -->
 <%= Portfolio.find(params[:id]).title %>
 <%= Portfolio.find(params[:id]).technologies %>
 

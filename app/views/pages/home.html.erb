@@ -1,7 +1,8 @@
-<h1>Hi, <%= current_user.first_name if current_user %></h1>
+<!-- <h1>Hi, <=%= current_user.first_name if current_user %></h1> -->
 <!-- Display only if at least 1 user exists in the DB. current_user is Devise provided access to the current user instance. first_name is a method in the User model (virtual attribute) -->
 
-
+<!-- After refactor in controller concern, I don't need the if anymore -->
+<h1>Hi, <%= current_user.first_name %></h1>
 
 <p>Find me in app/views/pages/home.html.erb</p>
 
@@ -18,3 +19,6 @@
     <%= eachSkill.title %>
     <%= eachSkill.percent_utilized %><br>
   <% end %>
+
+<!-- If you wanna check whether User model or OpenStruct is being invoked. See overriding current_user method defined in controller concern for details -->
+<!-- <p><=%= current_user.class %></p> -->
