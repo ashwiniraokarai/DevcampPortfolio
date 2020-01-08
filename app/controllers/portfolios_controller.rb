@@ -63,7 +63,7 @@ class PortfoliosController < ApplicationController
     redirect_to(portfolios_path, notice: "Your portfolio has been removed")
   end
 
-  #ASH: tossing permitted params into its own method so action create and update can leverage this
+  #ASH: Refactor- tossing permitted params into its own method so action create and update can leverage this
   private
 
   def portfolio_permitted_params

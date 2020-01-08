@@ -16,7 +16,11 @@
 
     <!-- ASH: Adding a link to logout to show across all pages -->
     <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they ahve logged out -->
-    <% if current_user %>
+    <!-- <=% if current_user %> -->
+    <!-- We are ALWAYS going to have a current_user after refactor. See overriding current_user method defined in controller concern for details -->
+    <!-- So, show logout button IF the user is logged in (current_user is of type User i.e, belongs to User model) else don't show (i.e, current_user belongs to OpenStruct) -->
+
+    <% if current_user.is_a?(User) %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <!-- ELSE show them links to sign-in or register -->
     <% else %>
