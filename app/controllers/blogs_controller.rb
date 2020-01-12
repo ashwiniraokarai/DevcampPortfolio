@@ -6,6 +6,9 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
     #Ash: If you wanted to display only 1 blog out of all the blogs in the DB, you'd do Blog.limit(1)
+
+    @page_title = "Blogs Page | My Portfolio Blog"
+    #@page title is accessed in (utilized by) application.html.erb
   end
 
   # GET /blogs/1
@@ -16,6 +19,8 @@ class BlogsController < ApplicationController
     #Things to try:
       #@blog = Blog.find(params[:id])
       #@blog = Blog.find(2)
+
+    @page_title = "Blog Page | " + @blog.title  #remember, @blog is set in :set_blog methid called via before_action
   end
 
   # GET /blogs/new

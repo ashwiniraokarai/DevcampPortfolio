@@ -1,38 +1,56 @@
+<!-- ASH: Consider this as a MASTER LAYOUT for all the views. Anything written here will show across all pages-->
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DevcampPortfolio</title>
+    <!-- ASH: Setting title via instance variable @page_title declared in controller instead. <title>DevcampPortfolio | My Portfolio Website</title> -->
+    <title><%= @page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- ASH added. @seo_keywords is set in default_page_content s.rb -->
+    <META name="keywords" content="<%= @seo_keywords%>" />
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  This line and links (home about contact logout register login) and any notices will show across every view
+
     <!-- ASH: Adding the notice and alert for flash messages, based on instructions of rails generate devise:install (an authentication gem)-->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <!-- ASH: Adding a link to logout to show across all pages -->
-    <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they ahve logged out -->
+    <!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages -->
+    <hr>
+    <div>
+      <%= link_to "Home", pages_home_path %>&nbsp;
+      <%= link_to "About", pages_about_path %>&nbsp;
+      <%= link_to "Contact", pages_contact_path %>&nbsp;
+      <%= link_to "Blogs", blogs_path %>&nbsp;
+      <%= link_to "Portfolios", portfolios_path %>
+    </div>
+
+    <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they have logged out -->
     <!-- <=% if current_user %> -->
     <!-- We are ALWAYS going to have a current_user after refactor. See overriding current_user method defined in controller concern for details -->
     <!-- So, show logout button IF the user is logged in (current_user is of type User i.e, belongs to User model) else don't show (i.e, current_user belongs to OpenStruct) -->
-
+    <hr>
     <% if current_user.is_a?(User) %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <p><%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
     <!-- ELSE show them links to sign-in or register -->
     <% else %>
-     <%= link_to "Register", new_user_registration_path %><br>
-     <%= link_to "Login", new_user_session_path %>
+     <p><%= link_to "Register", new_user_registration_path %><br></p>
+     <p><%= link_to "Login", new_user_session_path %></p>
     <% end %>
 
     <!-- session[:source] is defined in application_controller.rb -->
     <% if session[:source] %>
       <p>Session tracker says: Thanks for visiting me from <%= session[:source] %></p>
     <% end %>
+    <hr>
 
+    <!-- ASH: this was existing and this is the point where dynamic content start (specific views/ templates are yielded) -->
     <%= yield %>
   </body>
 </html>
