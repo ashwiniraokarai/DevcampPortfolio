@@ -1,4 +1,4 @@
-<!-- ASH: Consider this as a MASTER LAYOUT for all the views. Anything written here will show across all pages-->
+<!-- ASH: This is an exclusive layout for views associated with the PortfoliosController. For now, it's copy pasta of master layout application.html.erb with minor changes-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,12 +10,14 @@
     <!-- ASH added. @seo_keywords is set in default_page_content s.rb -->
     <META name="keywords" content="<%= @seo_keywords%>" />
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- ASH: layout needed to be associated to the related stylesheet for styles to apply -->
+    <%= stylesheet_link_tag 'portfolios', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  This line and links (home about contact logout register login) and any notices will show across every view
+  From layout portfolios.html.erb
+  <p>This line and links (home about contact logout register login) and any notices will show across every view</p>
 
     <!-- ASH: Adding the notice and alert for flash messages, based on instructions of rails generate devise:install (an authentication gem)-->
     <p class="notice"><%= notice %></p>

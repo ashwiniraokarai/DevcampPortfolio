@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
+  layout "blog" #Calls /layout/blog.html.erb. Conventionally, this would be same as writing layout("blog").
 
   # GET /blogs
   # GET /blogs.json
