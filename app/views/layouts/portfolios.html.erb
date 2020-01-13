@@ -24,14 +24,7 @@
     <p class="alert"><%= alert %></p>
 
     <!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages -->
-    <hr>
-    <div>
-      <%= link_to "Home", pages_home_path %>&nbsp;
-      <%= link_to "About", pages_about_path %>&nbsp;
-      <%= link_to "Contact", pages_contact_path %>&nbsp;
-      <%= link_to "Blogs", blogs_path %>&nbsp;
-      <%= link_to "Portfolios", portfolios_path %>
-    </div>
+    <%= render "shared/nav" %>
 
     <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they have logged out -->
     <!-- <=% if current_user %> -->
