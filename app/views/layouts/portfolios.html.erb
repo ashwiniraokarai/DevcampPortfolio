@@ -17,14 +17,14 @@
 
   <body>
   From layout portfolios.html.erb
-  <p>This line and links (home about contact logout register login) and any notices will show across every view</p>
-
+  <p>This line and beyond (nav links home about contact from partial, logout register login + notices will show across every view)</p>
     <!-- ASH: Adding the notice and alert for flash messages, based on instructions of rails generate devise:install (an authentication gem)-->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages. <!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages. Code stored in partial /shared/_nav.html.erb -->
-    <%= render "shared/nav" %>
+    <!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages. Code stored in partial /shared/_nav.html.erb -->
+    <!-- "portfolios" is a css class name I defined in portfolios.css. Assigning it to a variable called "links" that I call in the nav partial -->
+    <%= render "shared/nav", links: "portfolios" %>
 
     <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they have logged out -->
     <!-- <=% if current_user %> -->

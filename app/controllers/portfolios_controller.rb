@@ -1,4 +1,5 @@
 class PortfoliosController < ApplicationController
+#ASH: explicit ask to use the portfolios layout and override the default master layout application.html.erb
 layout "portfolios"
 
   def index
@@ -18,7 +19,7 @@ layout "portfolios"
   end
 
   def new
-    #The corresponding view typically has the form a user submits to create a portfolio
+    #The corresponding view typically has the "new" form a user submits to create a portfolio
     @portfolio = Portfolio.new
     #Ash: new simply instantiates a new Portfolio Model object and..
     #gives the ability to have the form to create a new Portfolio

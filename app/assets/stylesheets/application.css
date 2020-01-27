@@ -15,3 +15,7 @@
 
  *= require_self
  */
+
+ .application a {
+   color: blue;
+ }

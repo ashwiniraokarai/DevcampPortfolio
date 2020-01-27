@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
+  #ASH: explicit ask to use the blogs layout and override the default master layout application.html.erb
   layout "blog" #Calls /layout/blog.html.erb. Conventionally, this would be same as writing layout("blog").
 
   # GET /blogs
@@ -44,6 +45,8 @@ class BlogsController < ApplicationController
   def create
     #Ash: Instantiate a new Blog Model Object with the new.html.erb form data submitted
     @blog = Blog.new(blog_params)
+    #Ash: This is how you place a breakpoint that activates a byebug session on the rails s terminal when you hit this point in the code
+    #debugger
 
     respond_to do |format|
       if @blog.save
