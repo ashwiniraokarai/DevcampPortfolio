@@ -7,7 +7,7 @@ module CurrentUser
 
   def current_user
     #super simply calls the current_user method Devise (parent) which results in an instance of User model
-    #call current_user of parent IF current_user of parent exists (if user logged in is true)
+    #call current_user method of parent IF current_user of parent exists (in other words, if user logged in is true)
     #else mimic a user via OpenStruct as though they are coming from the database
     super || guest_user
   end

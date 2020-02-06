@@ -1,4 +1,4 @@
-<!-- ASH: Consider this as a MASTER LAYOUT for all the views. Anything written here will show across all pages-->
+<!-- ASH: This is an exclusive layout for views associated with the PortfoliosController. For now, it's copy pasta of master layout application.html.erb with minor changes-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,30 +10,21 @@
     <!-- ASH added. @seo_keywords is set in default_page_content s.rb -->
     <META name="keywords" content="<%= @seo_keywords%>" />
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- ASH: layout needed to be associated to the related stylesheet for styles to apply -->
+    <%= stylesheet_link_tag 'portfolios', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
-    This line and beyond (nav links home about contact from partial, logout register login + notices will show across every view)
-
-    <hr>
-
-    <!-- ASH: this is how you show debug info on html page. For console, as long as you have byebug gem, put in "debugger" anywhere on your code  -->
-    <p>Debug Info: <%=debug(params) %></p>
-    <!-- OR -->
-    <p>Debug Info: <%= params %></p>
-    <!-- OR -->
-    <p>Debug Info: <%= params.inspect %></p>
-
+  From layout portfolios.html.erb
+  <p>This line and beyond (nav links home about contact from partial, logout register login + notices will show across every view)</p>
     <!-- ASH: Adding the notice and alert for flash messages, based on instructions of rails generate devise:install (an authentication gem)-->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages. Code stored in partial /shared/_nav.html.erb -->
-    <!-- "application" is a css class name I defined in application.css. Assigning it to a variable called "links" that I call in the nav partial -->
-    <%= render "shared/nav", links: "application" %>
+    <!-- "portfolios" is a css class name I defined in portfolios.css. Assigning it to a variable called "links" that I call in the nav partial -->
+    <%= render "shared/nav", links: "portfolios" %>
 
     <!-- Show the logout button ONLY IF the user has signed in. No point showing logout after they have logged out -->
     <!-- <=% if current_user %> -->

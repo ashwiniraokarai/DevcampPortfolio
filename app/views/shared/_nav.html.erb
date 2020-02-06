@@ -1,0 +1,9 @@
+<!-- ASH: Adding NAVIGATION LINKS that I need shown across ALL pages. This partial is utilized by /layouts/application.html.erb, /blog.html.erb, /portfolios.html.erb -->
+<hr>
+<div class = <%= links %> >         <!-- ASH: links is a local variable that's meant for accepting different css class names coming from layouts application, blogs and portfolios. Each of the css classes dictates the color of the nav links (html <a> tag) -->
+  <%= link_to "Home", pages_home_path %>&nbsp;
+  <%= link_to "About", pages_about_path %>&nbsp;
+  <%= link_to "Contact", pages_contact_path %>&nbsp;
+  <%= link_to "Blogs", blogs_path %>&nbsp;
+  <%= link_to "Portfolios", portfolios_path %>
+</div>

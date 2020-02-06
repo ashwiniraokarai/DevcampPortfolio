@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   include SetSource
 
   #============================================
-  #During refactor, code was moved to module CurrentUser inside /controllers/concerns/set_source.rb
+  #During refactor, code was moved to module CurrentUser inside /controllers/concerns/current_user.rb
 
   ##before_action :current_user
 
@@ -49,4 +49,17 @@ class ApplicationController < ActionController::Base
 
   include CurrentUser
 
+  #============================================
+
+  #before_action :set_title
+
+  #def set_title
+    #@page_title = "Devcamp Portfolio | My Portfolio Website"
+    ##ASH: @page_title is referenced in (utilized by) application.html.erb.
+    ##NOTE: @page_title is also set to different values across individual controllers (blogs, pages)
+    ##this way the corresponding views display their page title based on the titles set in their controller
+    ##this is easier and efficient than going to individual view files and changing the title there?
+  #end
+
+  include DefaultPageContent
 end

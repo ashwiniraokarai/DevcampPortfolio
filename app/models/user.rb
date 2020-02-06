@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # Others available are :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
 #ASH - enforce name as a mandatory data users need to submit. This was an afterthought. Needed in order to grab the first and last name virtual attributes
-#defined below so we don't run into an error when users do not supply
+#defined below so we don't run into an error when users do not supply a name
 validates_presence_of :name
 
 #ASH - adding virtual attributes (unlike regular attributes that live as column names on tables, virtual attributes DON'T)
