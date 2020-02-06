@@ -3,6 +3,7 @@ class BlogsController < ApplicationController
   #ASH: explicit ask to use the blogs layout and override the default master layout application.html.erb
   layout "blog" #Calls /layout/blog.html.erb. Conventionally, this would be same as writing layout("blog").
 
+  #ASH: Adding a line here to test if merging master into test-branch brings latest changes from master
   # GET /blogs
   # GET /blogs.json
   def index
