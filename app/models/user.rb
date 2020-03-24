@@ -14,7 +14,7 @@ validates_presence_of :name
 #ASH - adding virtual attributes (unlike regular attributes that live as column names on tables, virtual attributes DON'T)
 def first_name
   self.name.split.first #same as split[0]
-  #You could have skipped the self keyword and it'd have worked the same BUT if somewhere else on the code your or some one used self.
+  #You could have skipped the self keyword and it'd have worked the same BUT if somewhere else on the code you or some one used self.name
   #to denote the instance variable, then this variable without self. (just "name") would be treated as a local variable unrelated to self.name
   #which obviously is not what you want
 end
